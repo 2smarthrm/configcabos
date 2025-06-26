@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <style>
+        body,
+        html {
+            font-family: "Montserrat", sans-serif;
+        }
+
+        body .cable-configuration .config-wrapper {
+            padding: 20px;
+        }
+
+
+        body .cable-configuration main {
+            display: flex;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        body .cable-configuration .main-image-box {
+            width: 600px;
+            height: 480px;
+            background: #ffff;
+            position: relative;
+            border-radius: 10px;
+            border: 1px solid rgb(235, 235, 235);
+            margin-right: 30px;
+        }
+
+
+        body .cable-configuration .exportech-logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            max-width: 100px;
+        }
+
+
+        body .cable-configuration .exportech-logo img {
+            width: 100%;
+        }
+
+
+        body .recommendation-products {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        body .recommendation-products button {
+            width: 60px;
+            max-width: 60px;
+            height: 60px;
+            margin-right: 10px;
+            border: none;
+            border: 1px solid rgb(231, 231, 231);
+            border-radius: 10px;
+            padding: 0px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        body .recommendation-products img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        body #recommend-box h5 {
+            font-size: 16px !important;
+            font-weight: bold;
+            margin: 0px;
+        }
+
+        body .cable-configuration .main-image {
+            width: 100%;
+
+            height: 100%;
+            object-fit: contain;
+        }
+
+
+
+        body .cable-configuration .form-area {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+
+        body .cable-configuration .form-area .form-group {
+            width: 32.5%;
+        }
+
+
+        body .cable-configuration .form-area select,
+        body .cable-configuration .form-area input {
+            font-size: 13px;
+        }
+
+
+        body .cable-configuration .space-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+
+        body .cable-configuration .space-header select {
+            max-width: 200px;
+            background-color: #E4EEFF;
+        }
+
+        body .cable-configuration .title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        body .cable-configuration .box-information {
+            display: flex;
+            width:100%;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid rgb(235, 235, 235);
+            background: #F9FAFF;
+            margin-right: 20px;
+        }
+
+
+        body .cable-configuration .dets-box {
+            width: 85%;
+            padding: 20px;
+            border-radius: 10px;
+            margin-right: 20px;
+            height: 100%;
+            background-color: #E4EEFF;
+        }
+
+
+        body .cable-configuration .dets-box ol {
+            list-style: disc;
+            padding: 0px;
+            padding-left: 30px;
+        }
+
+        body .cable-configuration .dets-box ol li {
+            margin: 0px;
+            margin-top: 10px;
+            font-weight: 550;
+        }
+
+        body .cable-configuration .form-zone {
+            width: 100%;
+        }
+
+
+        body .cable-configuration ul {
+            padding: 0px;
+            list-style: none;
+        }
+
+
+        body .cable-configuration .colors {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        body .cable-configuration ul li {
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            transition: all 1s ease-in-out;
+            border-radius: 50%;
+            position: relative;
+            border: 3px solid #ffff;
+        }
+
+
+
+
+        body .cable-configuration ul li.active {
+            transform: scale(0.7);
+            border: 3px solid #ffff;
+            box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+            animation: pulse-animation 2s infinite;
+        }
+
+
+
+        body .cable-configuration ul li:hover {
+            box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.3);
+        }
+
+
+        body .cable-configuration article button {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        body .cable-configuration .dets-area {
+            min-width: 400px;
+        }
+
+
+        body .cable-configuration button.bg-orange {
+            background: #fbb614;
+            padding: 10px 0px;
+            border-radius: 6px;
+            border: none;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+
+        body .cable-configuration button.bg-green {
+            background: #08d6a0;
+            padding: 10px 0px;
+            border-radius: 6px;
+            border: none;
+            font-weight: 500;
+            color: #ffff;
+            cursor: pointer;
+        }
+
+        body .cable-configuration .dets-math {
+            min-width: 300px;
+        }
+
+        body .cable-configuration .dets-math .text-blue {
+            color: #0084ff;
+            font-size: 12px;
+        }
+
+
+        body .cable-configuration .dets-math h4 {
+            font-size: 16px;
+            margin: 0px;
+            margin-top: 10px;
+            font-weight: bolder;
+        }
+
+
+
+        body .cable-configuration .range-input {
+            padding: 0px 10px;
+            width: 100%;
+        }
+
+
+        body .cable-configuration .unit {
+            padding: 2px 4px;
+            margin-top: 10px;
+            text-align: center;
+            border-radius: 6px;
+            border: 1px solid #0084ff;
+        }
+
+
+        body .cable-configuration .unit h3 {
+            font-size: 13px;
+            margin: 0px;
+            font-weight: 450;
+            color: #0084ff;
+        }
+
+
+        body .cable-configuration .form-group {
+            position: relative;
+            margin-top: 20px;
+        }
+
+        body .cable-configuration .form-group.col-lg-12 {
+            width: 100% !important;
+        }
+
+
+
+        body .cable-configuration label {
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+
+        body .cable-configuration .form-group .form-label {
+            position: absolute;
+            left: 10px;
+            top: -15px;
+            padding: 2px 4px;
+            padding-left: 10px;
+            background-color: #fff;
+            padding-right: 15px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        body .cable-configuration .form-group-range {
+            width: 33%;
+        }
+
+
+        body .cable-configuration .dets-math .form-group .form-label {
+            border-radius: 60px;
+            position: relative !important;
+            padding-left: 0px;
+            left: 0px;
+            top: 0px;
+            background-color: transparent;
+        }
+
+
+        body .cable-configuration form aside {
+            width: 32.5%;
+        }
+
+        body .cable-configuration form aside .form-group {
+            width: 100% !important;
+        }
+
+
+        body .cable-configuration form aside .form-group select {
+            width: 100%;
+        }
+
+
+        body .cable-configuration form strong {
+            font-weight: bolder !important;
+        }
+
+        body .cable-configuration .hide {
+            display: none !important;
+        }
+
+        @keyframes pulse-animation {
+            0% {
+                box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.2);
+            }
+
+            100% {
+                box-shadow: 0 0 0 20px rgba(0, 0, 0, 0);
+            }
+        }
+
+
+        body .colorselect {
+            width: 40px;
+            height: 40px;
+            border-radius: 100%;
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+            background-color: rgb(103, 102, 99);
+            border: 4px solid #e5e5e5;
+            box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+            animation: pulse-animation 2s infinite;
+        }
+
+        body .side-1 .form-group {
+            width: 100% !important;
+        }
+
+        body .side-2 .form-group {
+            width: 100% !important;
+        }
+
+        body .side-3 .form-group {
+            width: 32% !important;
+        }
+
+        body .aside-area {
+            width: 49% !important;
+        }
+
+        .cable-configuration .config-wrapper {
+            display: block;
+        }
+
+        .cable-configuration .configurator-empty {
+            display: none;
+        }
+
+        body #description-block {
+            font-size: 12px !important;
+            list-style: none;
+        }
+
+        body #recommend-box {
+            display: none;
+        }
+
+        body #recommend-box.show {
+            display: block !important;
+        }
+
+        body .left-image {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            z-index: 100;
+            width: 100%;
+            height: 100%;
+            border: 0px solid green;
+        }
+
+        body .right-image {
+            position: absolute;
+            right: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 120;
+            border: 0px solid gold;
+        }
+
+        body .left-image img,
+        body .right-image img {
+            width: 100%;
+            height: 100%;
+        }
+
+        body .main-image-container img {
+            border: 0px solid red;
+        }
+
+        body .main-image-container {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            height: 100%;
+            width: 100%;
+        }
+
+
+        @media screen and (max-width:1100px) {
+            body .cable-configuration .configurator-empty {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 500px;
+                padding: 40px;
+                text-align: center;
+            }
+
+            body .cable-configuration .configurator-empty h1 {
+                font-size: 17px !important;
+            }
+
+            body .cable-configuration .config-wrapper {
+                display: none !important;
+            }
+
+        }
+    </style>
+
+
+ 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+</head>
+
+<body>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+
+
+    <section class="cable-configuration">
+        <aside class="config-wrapper">
+            <main>
+                <article>
+                    <div class="main-image-box" id="main-image-box">
+                        <div class="exportech-logo">
+                             <img src="https://i.ibb.co/GvbV8T5c/Exportech-Logo-2.webp" alt="Exportech-Logo-2" > 
+                                
+                                
+                                
+                                <br>
+                            <div class="unit">
+                                <h3 class="text-blue" id="unit-counter">0 metros</h3>
+                            </div>
+                        </div>
+                        <div class="float-images">
+                            <div class="left-image"><img style="display:none;" id="left-image-cv" alt=""></div>
+                            <div class="right-image"><img style="display:none;" id="right-image-cv" alt=""></div>
+                        </div>
+                        <div class="main-image-container">
+                            <img alt="" style="display:none;" class="main-image" id="main-config-image-canvas">
+                        </div>
+                        <div class="colorselect"></div>
+                    </div>
+                </article>
+                <article class="form-zone">
+                    <div class="space-header">
+                        <div>
+                            <h1 class="title">Selecionar opções de configuração</h1>
+                        </div>
+                        <select name="" id="config-mode-selector" class="form-select">
+                            <option value="1">Jumpers</option> 
+                            <option value="3">Cabos Pigtail</option>
+                        </select>
+                    </div>
+                    <form id="config-form" class="form-area">
+                        <div class="form-group">
+                            <div class="form-label"><label for="inp-1">Modo de fibra</label></div>
+                            <select name="" id="config-fiber-mode-selector" class="form-select"></select>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-label"><label for="inp-1">Tipo de fibra</label></div>
+                            <select name="" id="config-cable-typeoffiber-selector" class="form-select"></select>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-label"><label for="inp-1">Nº de fibras por cabo</label></div>
+                            <select name="" id="config-noffiber-cable-selector" class="form-select"></select>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <div class="form-groups">
+                                <div class="form-label"><label for="inp-1">Diâmetro</label></div>
+                                <select name="" id="config-cable-diameter-selector" class="form-select"></select>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group-ranges">
+                                <div class="form-label"><label for="inp-1">Tamanho (Metragem)</label></div>
+                                <div class="d-flex">
+                                    <strong id="current-length">0m</strong>
+                                    <div class="range-input">
+                                        <input type="range" value="0" max="10000" min="1" class="form-range"
+                                            id="config-length-range">
+                                    </div>
+                                    <strong>10.000m</strong>
+                                    <div class="ml-2" style="padding-left:20px;">
+                                        <input class="input form-control" type="number" min="1" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <aside>
+                            <strong>Lado A</strong>
+                            <div class="form-group">
+                                <div class="form-label"><label for="inp-1">Conector</label></div>
+                                <select name="" id="config-side-a-connector-selector" class="form-select"></select>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-label"><label for="inp-1">Terminação</label></div>
+                                <select name="" id="config-side-a-termination-selector" class="form-select"></select>
+                            </div>
+                        </aside>
+                        <aside id="side-b-cont">
+                            <strong>Lado B</strong>
+                            <div class="form-group">
+                                <div class="form-label"><label for="inp-1">Conector</label></div>
+                                <select name="" id="config-side-b-connector-selector" class="form-select"></select>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-label"><label for="inp-1">Terminação</label></div>
+                                <select name="" id="config-side-b-termination-selector" class="form-select"></select>
+                            </div>
+                        </aside>
+                    </form>
+                </article>
+            </main>
+            <br>
+            <main>
+                <article class="box-information">
+                    <div class="dets-box">
+                        <ol id="description-block">
+                        </ol>
+                    </div>
+                    <div class="dets-math">
+
+                        <h3 class="title">Total geral</h3>
+                        <hr>
+                        <div class="form-group">
+                            <div class="form-label"><label for="inp-1">Quantidade</label></div> 
+                            <input value="1" id="config-request-amount-input" class="form-control" min="1" minlength="1" type="number" />
+                        </div>
+                        <h4 id="total-configuration">0€</h4>
+                        <small class="text-blue">+23 de IVA</small>
+                        <br><br>
+                        <button class="bg-orange" id="remove-config-button">Remover configurações</button>
+                        <button class="bg-green" id="send-config-button">Enviar solicitação de orçamento</button>
+                    </div>
+                </article>
+                <article class="dets-area  d-none">
+                    <div id="recommend-box">
+                        <h5>Outros produtos similares</h5>
+                        <div class="recommendation-products">
+                            <button>
+                                <a href="#" target="_blank" rel="noopener noreferrer">
+                                    <img src="https://store.exportech.com.pt/wp-content/uploads/2023/11/PG-1090210002-1-768x769.jpg" alt="#">
+                                </a>
+                            </button>
+                            <button>
+                                <a href="#" target="_blank" rel="noopener noreferrer">
+                                    <img src="https://store.exportech.com.pt/wp-content/uploads/2023/11/PG-6090440002-1-768x769.jpg"
+                                        alt="">
+                                </a>
+                            </button>
+                        </div> 
+                    </div>
+                </article>
+            </main>
+
+
+        </aside>
+        <aside class="configurator-empty">
+            <h1>Por favor, utilize um computador para aceder a esta ferramenta de configuração</h1>
+        </aside>
+    </section>
+
+
+
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js" 
+integrity="sha512-ykZ1QQr0Jy/4ZkvKuqWn4iF3lqPZyij9iRv6sGqLRdTPkY69YX6+7wvVGmsdBbiIfN/8OdsI7HABjvEok6ZopQ=="
+crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="./Main.js  "></script> 
+</html>
