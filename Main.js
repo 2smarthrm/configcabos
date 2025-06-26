@@ -97,7 +97,7 @@ function GetRealFormatProducts(produtos) {
         }
 
         console.log("produto = ", produto)
-        const fiber_number = produto.name.includes("Duplex") || produto.description.includes("2 Metros") ? "2 - fibras duplex" : "1 - fibra simplex";
+        const fiber_number = produto.name.includes("Duplex") ? "2 - fibras duplex" : "1 - fibra simplex";
 
         const connectorMatch = produto.name.match(/(LC|SC|FC|ST|E2000|D4)/i);
         const connector = connectorMatch ? connectorMatch[0].toUpperCase() : null;
