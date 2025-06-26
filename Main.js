@@ -1866,13 +1866,15 @@ function CalculateTotal(metters, amount, configuratorFormData) {
         const sideTotal = sideA.price + (sideB?.price || 0);
         total = calculateFormula(currentConfigValue, sideTotal, metters, amount);
         console.log("Tentando pegar apenas um lado ...");
-
+       
         TotalConfigurationTag.innerText = total;
         if (document.getElementById("totol")) {
             document.getElementById("totol").innerHTML = `Total (+IVA) : <span class="text-success">${total}</span>`;
         }
     }
 
+      console.log("FIBER DATA = ", fiberData);
+      console.log("filtered data = ", DataPricesFiltered);
     return { ...result, total };
 }
 
