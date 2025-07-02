@@ -96,8 +96,7 @@ function GetRealFormatProducts(produtos) {
             mode = "SM";
         }
 
-        console.log("produto = ", produto)
-        const fiber_number = produto.name.includes("Duplex") ? "2 - fibras duplex" : "1 - fibra simplex";
+        const fiber_number = produto.name.includes("Duplex")   ? "2 - fibras duplex" : "1 - fibra simplex";
 
         const connectorMatch = produto.name.match(/(LC|SC|FC|ST|E2000|D4)/i);
         const connector = connectorMatch ? connectorMatch[0].toUpperCase() : null;
@@ -388,7 +387,7 @@ function GetCablesImages() {
     <a href="https://imgbb.com/"><img src="https://i.ibb.co/gbpMTxgr/2din-pc-W-A.png" alt="2din-upc-W-A" border="0"></a>
     <a href="https://imgbb.com/"><img src="https://i.ibb.co/mZjXxC5/2fc-pc-W-A.png" alt="2fc-upc-W-A" border="0"></a>
     <a href="https://imgbb.com/"><img src="https://i.ibb.co/0wgp5y9/2lc-pc-W-A.png" alt="2lc-upc-W-A" border="0"></a>
-    <a href="https://imgbb.com/"><img src="https://i.ibb.co/bZyZd8P/2mu-pc-R-A.png" alt="2mu-upc-R-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/bZyZd8P/2mu-pc-R-A.png" alt="2mu-upc-W-A" border="0"></a>
     <a href="https://imgbb.com/"><img src="https://i.ibb.co/sdQwksry/2sc-pc-W-A.png" alt="2sc-upc-W-A" border="0"></a>
     <a href="https://imgbb.com/"><img src="https://i.ibb.co/kVFJpPBs/2st-pc-W-A.png" alt="2st-upc-W-A" border="0"></a>
     <a href="https://imgbb.com/"><img src="https://i.ibb.co/39pThqMP/mpo-pc-W-A.png" alt="mpo-upc-W-A" border="0"></a>
@@ -593,6 +592,7 @@ const configuratorFormData = [
                     type: 0,
                     inputType: null,
                     options: [
+                        { label: "1 Fibra (Simplex)", value: "1 fibra simplex" },
                         { label: "2 Fibras (Duplex)", value: "2 - fibras duplex" },
                     ],
                 },
@@ -1065,15 +1065,39 @@ function GetInputsValuesAndFillThem() {
         data.forEach(element => {
             document.getElementById(element.id).addEventListener("change", (e) => {
                 element.value = e.target.value;
+                if(element.id === "fiber_number_selector"){ 
+                    const options = [
+                        {label:"900µm (Mícron)", value: "900µm"},
+                        {label:"2.0mm", value: "2.0mm"},
+                        {label:"3.0mm", value: "3.0mm"},
+                    ];  
+                     let diameter = document.getElementById("fiber_diameter_selector");
+                    if(e.target.value.split(" ").includes("duplex")){ 
+                        diameter.innerHTML = "";
+                        diameter.innerHTML = `<option disabled selected>selecionar...</option>`;
+                         for(var i = 1; i < options.length; i++){
+                              diameter.innerHTML += `<option value="${options[i].value}">${options[i].label}</option> `;
+                         }
+                    }else{ 
+                        diameter.innerHTML = "";
+                        diameter.innerHTML = `<option disabled selected>selecionar...</option>`;
+                         for(var i = 0; i < options.length; i++) {
+                              diameter.innerHTML += `<option value="${options[i].value}">${options[i].label}</option> `;
+                         }
+                    }
+                }
                 showDescrriptionWhileConfigurating();
-                FindBestMatchingProduct();
+                FindBestMatchingProduct(); 
+                //CalculateTotal(MeterValue, QuantityInputValue, configuratorFormData);
             });
 
             if (element.type !== "select") {
                 document.getElementById(element.id).addEventListener("keyup", (e) => {
+                    e.preventDefault();
                     element.value = e.target.value;
                     showDescrriptionWhileConfigurating();
-                    FindBestMatchingProduct();
+                   console.log("Images data 2 = ", FindBestMatchingProduct())
+                // CalculateTotal(MeterValue, QuantityInputValue, configuratorFormData);
                 });
             }
 
@@ -1110,8 +1134,7 @@ function FindBestMatchingProduct() {
     ImageCanvas.style.display = "none";
     Image_a_element.style.display = "none";
     Image_b_element.style.display = "none";
-    console.clear();
-
+ 
     const configKeyMap = {
         1: "jumpers",
         2: "multifiber",
@@ -1148,18 +1171,9 @@ function FindBestMatchingProduct() {
         ? CablesImages.find(img => img.main && img.color === fiberColorData.color)
         : null;
 
-    const getCableImageSide = (connector, termination, side) => {
-        console.log(`
-           fibers =  ${fiberCount}
-           side =  ${(side)}
-           connect a =  ${sideAConnector}   
-           terminal a =  ${sideATermination} 
-           connect b =  ${sideBConnector}   
-           terminal b =  ${sideBTermination}   
-           color = ${fiberColorData.color}
-        `)
+    const getCableImageSide = (connector, termination, side) => { 
         if (!connector || !termination) return null;
-        const resultF = CablesImages.find(img =>
+        const resultF = CablesImages.find(img => 
             img.connect &&
             img.termination &&
             cleanConnector(img.connect).toUpperCase() === connector &&
@@ -1169,8 +1183,6 @@ function FindBestMatchingProduct() {
             img.color === fiberColorData.color
         ) || null;
 
-        console.log("Founded = ", resultF !== null);
-        console.log("Images = ", Images)
         return resultF;
     };
 
@@ -1190,7 +1202,7 @@ function FindBestMatchingProduct() {
     if (sideB?.source) {
         Image_b_element.style.display = "block";
         Image_b_element.src = sideB.source;
-    }
+    } 
 
     return {
         sides: {
@@ -1358,8 +1370,13 @@ function BuildForm(type) {
 
 
 
-
-
+/// previnir a sumição do form e refresh
+function PreventFormtorefresh(){
+    let form = document.getElementById("config-form");
+    form.addEventListener("submit", (e)=>{{
+        e.preventDefault();
+    }});
+}
 
 
 
@@ -1643,8 +1660,8 @@ async function uploadImageToCloudinary(imageBlob) {
 
 
 const DataPrices = [
-    {
-        type: "jumpers", /// dados para os jumpers
+  {
+        type: "jumpers", 
         info: [
             {
                 mode: "SM",
@@ -1702,34 +1719,100 @@ const DataPrices = [
                     { connect: "MPO 12F (OPTOSEA Standard)", price: 18.84 },
                     { connect: "MPO 24F (OPTOSEA Standard)", price: 41.77 }
                 ]
+            },
+             {
+                mode: "MM",
+                termination: "UPC",
+                connects: [
+                    { connect: "SC", price: 0.91 },
+                    { connect: "ST", price: 0.95 },
+                    { connect: "LC", price: 0.91 },
+                    { connect: "FC", price: 0.95 },
+                    { connect: "E2000", price: 9.50 },
+                    { connect: "SMA 906", price: 24.63 },
+                    { connect: "MTRJ", price: 3.37 },
+                    { connect: "DIN", price: 4.71 },
+                    { connect: "M U", price: 3.14 },
+                    { connect: "MTP 12F (USCONEC Standard)", price: 40.57 },
+                    { connect: "MTP 24F (USCONEC Standard)", price: 71.43 },
+                    { connect: "MPO 12F (OPTOSEA Standard)", price: 18.84 },
+                    { connect: "MPO 24F (OPTOSEA Standard)", price: 41.77 }
+                ]
             }
         ]
     },
+    {
+        type: "pigtails",
+        info: [
+            {
+                mode: "SM",
+                termination: "UPC",
+                connects: [
+                    { connect: "SC", price: 0.77 },
+                    { connect: "ST", price: 0.80 },
+                    { connect: "LC", price: 0.77 },
+                    { connect: "FC", price: 0.80 },
+                    { connect: "E2000", price: 9.50 },
+                    { connect: "DIN", price: 5.00 }
+                ]
+            },
+            {
+                mode: "SM",
+                termination: "APC",
+                connects: [
+                    { connect: "SC", price: 0.86 },
+                    { connect: "ST", price: 0.89 },
+                    { connect: "LC", price: 0.86 },
+                    { connect: "FC", price: 0.89 },
+                    { connect: "E2000", price: 9.50 },
+                    { connect: "DIN", price: 5.14 }
+                ]
+            },
+            {
+                mode: "MM",
+                termination: "UPC",
+                connects: [
+                    { connect: "SC", price: 0.71 },
+                    { connect: "ST", price: 0.74 },
+                    { connect: "LC", price: 0.71 },
+                    { connect: "FC", price: 0.74 },
+                    { connect: "E2000", price: 9.50 },
+                    { connect: "DIN", price: 4.71 }
+                ]
+            }
+        ], 
+    }
 ];
+
+
+
+
+
+
 
 const CablesPrices = [
     {
         mode: "SM",
         prices: [
             { type: "G652D", diameter: "900µm", price: 0.07, fiber: 1 },
-            { type: "G652D", diameter: "2mm", price: 0.11, fiber: 1 },
-            { type: "G652D", diameter: "3mm", price: 0.13, fiber: 1 },
-            { type: "G652D", diameter: "2mm", price: 0.23, fiber: 2 },
-            { type: "G652D", diameter: "3mm", price: 0.26, fiber: 2 },
+            { type: "G652D", diameter: "2.0mm", price: 0.11, fiber: 1 },
+            { type: "G652D", diameter: "3.0mm", price: 0.13, fiber: 1 },
+            { type: "G652D", diameter: "2.0mm", price: 0.23, fiber: 2 },
+            { type: "G652D", diameter: "3.0mm", price: 0.26, fiber: 2 },
             { type: "G652D", diameter: "24FO for MTP", price: 2.51, fiber: 1 },
             { type: "G652D", diameter: "12FO for MTP", price: 1.29, fiber: 1 },
 
             { type: "G657A2", diameter: "900µm", price: 0.09, fiber: 1 },
-            { type: "G657A2", diameter: "2mm", price: 0.13, fiber: 1 },
-            { type: "G657A2", diameter: "3mm", price: 0.14, fiber: 1 },
-            { type: "G657A2", diameter: "2mm", price: 0.26, fiber: 2 },
-            { type: "G657A2", diameter: "3mm", price: 0.29, fiber: 2 },
+            { type: "G657A2", diameter: "2.0mm", price: 0.13, fiber: 1 },
+            { type: "G657A2", diameter: "3.0mm", price: 0.14, fiber: 1 },
+            { type: "G657A2", diameter: "2.0mm", price: 0.26, fiber: 2 },
+            { type: "G657A2", diameter: "3.0mm", price: 0.29, fiber: 2 },
 
             { type: "G657B3", diameter: "900µm", price: 0.26, fiber: 1 },
-            { type: "G657B3", diameter: "2mm", price: 0.31, fiber: 1 },
-            { type: "G657B3", diameter: "3mm", price: 0.34, fiber: 1 },
-            { type: "G657B3", diameter: "2mm", price: 0.63, fiber: 2 },
-            { type: "G657B3", diameter: "3mm", price: 0.69, fiber: 2 }
+            { type: "G657B3", diameter: "2.0mm", price: 0.31, fiber: 1 },
+            { type: "G657B3", diameter: "3.0mm", price: 0.34, fiber: 1 },
+            { type: "G657B3", diameter: "2.0mm", price: 0.63, fiber: 2 },
+            { type: "G657B3", diameter: "3.0mm", price: 0.69, fiber: 2 }
         ],
     },
     {
@@ -1737,47 +1820,48 @@ const CablesPrices = [
         prices: [
             // OM1
             { type: "OM1", diameter: "900µm", price: 0.19, fiber: 1 },
-            { type: "OM1", diameter: "2mm", price: 0.22, fiber: 1 },
-            { type: "OM1", diameter: "3mm", price: 0.24, fiber: 1 },
+            { type: "OM1", diameter: "2.0mm", price: 0.22, fiber: 1 },
+            { type: "OM1", diameter: "3.0mm", price: 0.24, fiber: 1 },
             { type: "OM1", diameter: "Duplex 2mm", price: 0.46, fiber: 2 },
             { type: "OM1", diameter: "Duplex 3mm", price: 0.51, fiber: 2 },
 
             // OM2
             { type: "OM2", diameter: "900µm", price: 0.14, fiber: 1 },
-            { type: "OM2", diameter: "2mm", price: 0.19, fiber: 1 },
-            { type: "OM2", diameter: "3mm", price: 0.21, fiber: 1 },
-            { type: "OM2", diameter: "2mm", price: 0.40, fiber: 2 },
-            { type: "OM2", diameter: "3mm", price: 0.43, fiber: 2 },
+            { type: "OM2", diameter: "2.0mm", price: 0.19, fiber: 1 },
+            { type: "OM2", diameter: "3.0mm", price: 0.21, fiber: 1 },
+            { type: "OM2", diameter: "2.0mm", price: 0.40, fiber: 2 },
+            { type: "OM2", diameter: "3.0mm", price: 0.43, fiber: 2 },
             { type: "OM2", diameter: "24FO for MTP", price: 3.86, fiber: 24 },
             { type: "OM2", diameter: "12FO for MTP", price: 1.94, fiber: 12 },
 
             // OM3
             { type: "OM3", diameter: "900µm", price: 0.20, fiber: 1 },
-            { type: "OM3", diameter: "2mm", price: 0.24, fiber: 1 },
-            { type: "OM3", diameter: "3mm", price: 0.26, fiber: 1 },
-            { type: "OM3", diameter: "2mm", price: 0.49, fiber: 2 },
-            { type: "OM3", diameter: "3mm", price: 0.51, fiber: 2 },
+            { type: "OM3", diameter: "2.0mm", price: 0.24, fiber: 1 },
+            { type: "OM3", diameter: "3.0mm", price: 0.26, fiber: 1 },
+            { type: "OM3", diameter: "2.0mm", price: 0.49, fiber: 2 },
+            { type: "OM3", diameter: "3.0mm", price: 0.51, fiber: 2 },
             { type: "OM3", diameter: "24FO for MTP", price: 5.00, fiber: 24 },
             { type: "OM3", diameter: "12FO for MTP", price: 2.57, fiber: 12 },
 
             // OM4
             { type: "OM4", diameter: "900µm", price: 0.46, fiber: 1 },
-            { type: "OM4", diameter: "2mm", price: 0.51, fiber: 1 },
-            { type: "OM4", diameter: "3mm", price: 0.53, fiber: 1 },
-            { type: "OM4", diameter: "2mm", price: 1.03, fiber: 2 },
-            { type: "OM4", diameter: "3mm", price: 1.06, fiber: 2 },
+            { type: "OM4", diameter: "2.0mm", price: 0.51, fiber: 1 },
+            { type: "OM4", diameter: "3.0mm", price: 0.53, fiber: 1 },
+            { type: "OM4", diameter: "2.0mm", price: 1.03, fiber: 2 },
+            { type: "OM4", diameter: "3.0mm", price: 1.06, fiber: 2 },
             { type: "OM4", diameter: "24FO for MTP", price: 14.29, fiber: 24 },
             { type: "OM4", diameter: "12FO for MTP", price: 7.14, fiber: 12 },
 
             // OM5
             { type: "OM5", diameter: "900µm", price: 0.73, fiber: 1 },
-            { type: "OM5", diameter: "2mm", price: 0.79, fiber: 1 },
-            { type: "OM5", diameter: "3mm", price: 0.80, fiber: 1 },
-            { type: "OM5", diameter: "2mm", price: 1.57, fiber: 2 },
-            { type: "OM5", diameter: "3mm", price: 1.60, fiber: 2 }
+            { type: "OM5", diameter: "2.0mm", price: 0.79, fiber: 1 },
+            { type: "OM5", diameter: "3.0mm", price: 0.80, fiber: 1 },
+            { type: "OM5", diameter: "2.0mm", price: 1.57, fiber: 2 },
+            { type: "OM5", diameter: "3.0mm", price: 1.60, fiber: 2 }
         ],
     }
 ];
+
 
 
 function CalculateTotal(metters, amount, configuratorFormData) {
@@ -1822,6 +1906,7 @@ function CalculateTotal(metters, amount, configuratorFormData) {
     };
 
     const normalize = str => str?.toUpperCase().replace(/\s+/g, '').trim();
+        console.clear();
 
     const DataPricesFiltered = DataPrices.find(d => d.type === type);
     const getConnectorPrice = (mode, termination, connector) => {
@@ -1829,10 +1914,20 @@ function CalculateTotal(metters, amount, configuratorFormData) {
             normalize(item.mode) === normalize(mode) &&
             normalize(item.termination) === normalize(termination)
         );
+
+
+
+        DataPricesFiltered?.info.find(item =>{
+            console.log("MODE DB = "+normalize(item.mode) + " | passed = "+normalize(mode),   normalize(item.mode) === normalize(mode)); 
+            console.log("TERMINATION DB = "+normalize(item.termination) + " | passed = "+normalize(termination),   normalize(item.termination) === normalize(termination)); 
+        });
+
+
         if (!infoMatch) return null;
         const connectorMatch = infoMatch.connects.find(c =>
             normalize(c.connect) === normalize(connector)
-        );
+        ); 
+
         return connectorMatch ? { connect: connector, price: connectorMatch.price } : null;
     };
 
@@ -1865,24 +1960,41 @@ function CalculateTotal(metters, amount, configuratorFormData) {
     let total = null;
     if (sideA && (currentConfigValue === 2 || sideB)) {
         const sideTotal = sideA.price + (sideB?.price || 0);
-        total = calculateFormula(currentConfigValue, sideTotal, metters, amount);
-        console.log("Tentando pegar apenas um lado ...");
-       
+        total = calculateFormula(currentConfigValue, sideTotal, metters, amount); 
+
         TotalConfigurationTag.innerText = total;
         if (document.getElementById("totol")) {
             document.getElementById("totol").innerHTML = `Total (+IVA) : <span class="text-success">${total}</span>`;
         }
     }
 
-      console.log("FIBER DATA = ", fiberData);
-      console.log("filtered data = ", DataPricesFiltered);
+
+   
+       cableGroup.prices.map(item => { 
+        console.log("TYPE = "+normalize(item.type) +" |  Passed = "+normalize(fiber_type_selector),  normalize(item.type) === normalize(fiber_type_selector));
+        console.log("DIAMETRO = "+normalize(item.diameter) +" |  Passed = "+normalize(fiber_diameter_selector), normalize(item.diameter) === normalize(fiber_diameter_selector));
+        console.log("numero de fibras = "+ item.fiber +" |  Passed = "+ fiberCount, item.fiber === fiberCount);
+        console.log(" ")
+        console.log(" ")
+      });
+
+
+       
+      console.log("Dados da configuração = ", fiberData); 
+      console.log("CABO = ", cable);
+      console.log("output = ", result);
+
+
+ 
+
+
     return { ...result, total };
 }
 
 
 
 function calculateFormula(number, connectorAvgPrice, metters, amount) {
-    const Iva = 23;
+    const Iva = 0;
     const Total = number * connectorAvgPrice * metters;
     const IvaValue = Iva * Total / 100;
     return new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR" }).format((Total + IvaValue) * amount);
@@ -1892,11 +2004,16 @@ function calculateFormula(number, connectorAvgPrice, metters, amount) {
 
 
 
+ 
+
+
+
+
+
+
 QuantityInput.addEventListener("change", (e) => {
     QuantityInputValue = e.target.value * 1;
-    const Result = CalculateTotal(MeterValue, QuantityInputValue, configuratorFormData);
-    console.log(Result);
-    console.log("Metters = ", MeterValue);
+    const Result = CalculateTotal(MeterValue, QuantityInputValue, configuratorFormData); 
 });
 
 
@@ -1924,6 +2041,7 @@ document.addEventListener("DOMContentLoaded", () => {
     GetInputsValuesAndFillThem();
     ChangeTypeOfConfiguration();
     showDescrriptionWhileConfigurating();
+    PreventFormtorefresh();
     console.log(ProductsDatabase);
 });
 
