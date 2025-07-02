@@ -1088,7 +1088,7 @@ function GetInputsValuesAndFillThem() {
                 }
                 showDescrriptionWhileConfigurating();
                 FindBestMatchingProduct(); 
-                //CalculateTotal(MeterValue, QuantityInputValue, configuratorFormData);
+                CalculateTotal(MeterValue, QuantityInputValue, configuratorFormData);
             });
 
             if (element.type !== "select") {
@@ -1097,7 +1097,7 @@ function GetInputsValuesAndFillThem() {
                     element.value = e.target.value;
                     showDescrriptionWhileConfigurating();
                    console.log("Images data 2 = ", FindBestMatchingProduct())
-                // CalculateTotal(MeterValue, QuantityInputValue, configuratorFormData);
+                  CalculateTotal(MeterValue, QuantityInputValue, configuratorFormData);
                 });
             }
 
@@ -1999,15 +1999,7 @@ function calculateFormula(number, connectorAvgPrice, metters, amount) {
     const IvaValue = Iva * Total / 100;
     return new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR" }).format((Total + IvaValue) * amount);
 }
-
-
-
-
-
  
-
-
-
 
 
 
