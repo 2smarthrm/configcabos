@@ -149,9 +149,260 @@ const ProductsDatabase = {
 }
 
 
-function GetCablesImages() {
+let currentConfigValue = 1;
+function GetCablesImages(tp) {
     const Imagesdiv = document.createElement("div");
-    Imagesdiv.innerHTML = `
+ 
+    const PigtailsImages = ` 
+    <a href="https://ibb.co/HTsMJmMn"><img src="https://i.ibb.co/whXbvDbM/c-v.png" alt="c-V" border="0"></a> 
+    <a href="https://ibb.co/ynXGTq2g"><img src="https://i.ibb.co/0jc8Nr5Y/c-L.png" alt="c-L" border="0"></a>
+    <a href="https://ibb.co/Jj0C5j36"><img src="https://i.ibb.co/jkBHgkJ0/c-r.png" alt="c-r" border="0"></a>
+    <a href="https://ibb.co/Df19vXW2"><img src="https://i.ibb.co/zVmXBcxv/c-A.png" alt="c-A" border="0"></a>    
+    <a href="https://ibb.co/Tq0wvSw9"><img src="https://i.ibb.co/JFpcB4cD/c-azul.png" alt="c-B" border="0"></a>
+    <a href="https://ibb.co/cSshRtCp"><img src="https://i.ibb.co/4n0RCMYD/c-w.png" alt="c-w" border="0"></a>
+    <a href="https://ibb.co/0j5CZt7w"><img src="https://i.ibb.co/zhdXbJMk/branco.png" alt="c-br" border="0"></a>
+
+    GREEN pigtails --------*****
+    
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/rKVxGrYF/1din-pc-V-A.png" alt="1din-pc-V-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/d4cpvJ0B/1fc-pc-V-A.png" alt="1fc-pc-V-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/d4stRkd3/1lc-pc-V-A.png" alt="1lc-pc-V-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/DDKG7z4b/1mtrl-pc-V-A.png" alt="1mtrl-pc-V-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/C5FqgTWc/1mu-pc-V-A.png" alt="1mu-pc-V-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/BK37DsV4/1sc-pc-V-A.png" alt="1sc-pc-V-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/KjpGvPD9/1st-pc-V-A.png" alt="1st-pc-V-A" border="0"></a>
+
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/rKVxGrYF/1din-pc-V-A.png" alt="1din-upc-V-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/d4cpvJ0B/1fc-pc-V-A.png" alt="1fc-upc-V-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/d4stRkd3/1lc-pc-V-A.png" alt="1lc-upc-V-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/DDKG7z4b/1mtrl-pc-V-A.png" alt="1mtrl-upc-V-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/C5FqgTWc/1mu-pc-V-A.png" alt="1mu-upc-V-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/BK37DsV4/1sc-pc-V-A.png" alt="1sc-upc-V-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/KjpGvPD9/1st-pc-V-A.png" alt="1st-upc-V-A" border="0"></a>
+
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/bMLSNtmT/1din-pc-V-B.png" alt="1din-pc-V-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/LX5F4G85/1fc-pc-V-B.png" alt="1fc-pc-V-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/M53ShyHR/1lc-pc-V-B.png" alt="1lc-pc-V-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/QFdhXg8n/1mtrl-pc-V-B.png" alt="1mtrl-pc-V-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/ynX5TXvv/1mu-pc-V-B.png" alt="1mu-pc-V-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/ccp8pM0q/1sc-pc-V-B.png" alt="1sc-pc-V-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/BKtQ3RYt/1st-pc-V-B.png" alt="1st-pc-V-B" border="0"></a>
+
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/bMLSNtmT/1din-pc-V-B.png" alt="1din-upc-V-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/LX5F4G85/1fc-pc-V-B.png" alt="1fc-upc-V-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/M53ShyHR/1lc-pc-V-B.png" alt="1lc-upc-V-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/QFdhXg8n/1mtrl-pc-V-B.png" alt="1mtrl-upc-V-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/ynX5TXvv/1mu-pc-V-B.png" alt="1mu-upc-V-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/ccp8pM0q/1sc-pc-V-B.png" alt="1sc-upc-V-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/BKtQ3RYt/1st-pc-V-B.png" alt="1st-upc-V-B" border="0"></a>
+
+
+    
+    ORANGE  pigtails------*****
+
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/LDtVyLTS/1din-pc-L-A.png" alt="1din-pc-L-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/8DPw5WGW/1fc-pc-L-A.png" alt="1fc-pc-L-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/CrCK0Tm/1lc-pc-L-A.png" alt="1lc-pc-L-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/prR32Rrz/1mtrl-pc-L-A.png" alt="1mtrl-pc-L-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/R4QcFnMH/1mu-pc-L-A.png" alt="1mu-pc-L-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/Hv2gB7w/1sc-pc-L-A.png" alt="1sc-pc-L-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/5X1LWFC2/1st-pc-L-A.png" alt="1st-pc-L-A" border="0"></a>
+
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/LDtVyLTS/1din-pc-L-A.png" alt="1din-upc-L-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/8DPw5WGW/1fc-pc-L-A.png" alt="1fc-upc-L-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/CrCK0Tm/1lc-pc-L-A.png" alt="1lc-upc-L-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/prR32Rrz/1mtrl-pc-L-A.png" alt="1mtrl-upc-L-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/R4QcFnMH/1mu-pc-L-A.png" alt="1mu-upc-L-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/Hv2gB7w/1sc-pc-L-A.png" alt="1sc-upc-L-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/5X1LWFC2/1st-pc-L-A.png" alt="1st-upc-L-A" border="0"></a>
+ 
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/JFC82pcX/1din-pc-L-B.png" alt="1din-pc-L-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/JFFrY1W7/1fc-pc-L-B.png" alt="1fc-pc-L-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/5WWF9QLd/1lc-pc-L-B.png" alt="1lc-pc-L-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/1tdnxbRk/1mtrl-pc-L-B.png" alt="1mtrl-pc-L-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/zTf854xh/1mu-pc-L-B.png" alt="1mu-pc-L-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/WvP9rmqW/1sc-pc-L-B.png" alt="1sc-pc-L-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/p6hqnQGc/1st-pc-L-B.png" alt="1st-pc-L-B" border="0"></a>
+
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/JFC82pcX/1din-pc-L-B.png" alt="1din-upc-L-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/JFFrY1W7/1fc-pc-L-B.png" alt="1fc-upc-L-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/5WWF9QLd/1lc-pc-L-B.png" alt="1lc-upc-L-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/1tdnxbRk/1mtrl-pc-L-B.png" alt="1mtrl-upc-L-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/zTf854xh/1mu-pc-L-B.png" alt="1mu-upc-L-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/WvP9rmqW/1sc-pc-L-B.png" alt="1sc-upc-L-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/p6hqnQGc/1st-pc-L-B.png" alt="1st-upc-L-B" border="0"></a>
+
+
+    PURPLE pigtails -----------*******
+   
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/cSdDZJJz/1din-pc-R-A.png" alt="1din-pc-R-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/9m6nH3HL/1fc-pc-R-A.png" alt="1fc-pc-R-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/Jj1Q0tDk/1lc-pc-R-A.png" alt="1lc-pc-R-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/Kz7rQvVc/1mtrl-pc-R-A.png" alt="1mtrl-pc-R-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/396rfh82/1mu-pc-R-A.png" alt="1mu-pc-R-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/G4LWt7DT/1sc-pc-R-A.png" alt="1sc-pc-R-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/1fJVT5s9/1st-pc-R-A.png" alt="1st-pc-R-A" border="0"></a>
+
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/cSdDZJJz/1din-pc-R-A.png" alt="1din-upc-R-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/9m6nH3HL/1fc-pc-R-A.png" alt="1fc-upc-R-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/Jj1Q0tDk/1lc-pc-R-A.png" alt="1lc-upc-R-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/Kz7rQvVc/1mtrl-pc-R-A.png" alt="1mtrl-upc-R-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/396rfh82/1mu-pc-R-A.png" alt="1mu-upc-R-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/G4LWt7DT/1sc-pc-R-A.png" alt="1sc-upc-R-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/1fJVT5s9/1st-pc-R-A.png" alt="1st-upc-R-A" border="0"></a>
+
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/pBc5TDMg/1din-pc-R-B.png" alt="1din-pc-R-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/7NZWRBcR/1fc-pc-R-B.png" alt="1fc-pc-R-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/Vk9QyJ3/1lc-pc-R-B.png" alt="1lc-pc-R-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/h0NmKV5/1mtrl-pc-R-B.png" alt="1mtrl-pc-R-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/gLZq0X7d/1mu-pc-R-B.png" alt="1mu-pc-R-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/LdqjY1yd/1sc-pc-R-B.png" alt="1sc-pc-R-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/tjgTxCN/1st-pc-R-B.png" alt="1st-pc-R-B" border="0"></a>
+
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/pBc5TDMg/1din-pc-R-B.png" alt="1din-upc-R-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/7NZWRBcR/1fc-pc-R-B.png" alt="1fc-upc-R-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/Vk9QyJ3/1lc-pc-R-B.png" alt="1lc-upc-R-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/h0NmKV5/1mtrl-pc-R-B.png" alt="1mtrl-upc-R-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/gLZq0X7d/1mu-pc-R-B.png" alt="1mu-upc-R-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/LdqjY1yd/1sc-pc-R-B.png" alt="1sc-upc-R-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/tjgTxCN/1st-pc-R-B.png" alt="1st-upc-R-B" border="0"></a>
+
+
+    YELLOW pigtails -----------*******
+
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/bjwS98bc/1din-pc-A-A.png" alt="1din-pc-A-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/tMSdhF0X/1e2000-apc-A-A.png" alt="1e2000-apc-A-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/C3sT5txd/1e2000-upc-A-A.png" alt="1e2000-upc-A-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/hFKtC81F/1fc-pc-A-A.png" alt="1fc-pc-A-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/gNBz4LJ/1lc-apc-A-A.png" alt="1lc-apc-A-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/vCLYQ1WK/1lc-upc-A-A.png" alt="1lc-upc-A-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/rfRSfv9g/1mtrl-pc-A-A.png" alt="1mtrl-pc-A-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/xKTBbKC0/1mu-pc-A-A.png" alt="1mu-pc-A-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/KzDHFWY8/1sc-apc-A-A.png" alt="1sc-apc-A-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/wrL6TRfq/1sc-upc-A-A.png" alt="1sc-upc-A-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/CKd65nPj/1st-pc-A-A.png" alt="1st-pc-A-A" border="0"></a> 
+ 
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/39Mmqn5w/1din-pc-A-B.png" alt="1din-pc-A-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/hFY13DCy/1e2000-apc-A-B.png" alt="1e2000-apc-A-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/Dfy26fR5/1e2000-upc-A-B.png" alt="1e2000-upc-A-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/SwdbwKtD/1fc-pc-A-B.png" alt="1fc-pc-A-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/tPNFLWRG/1lc-apc-A-B.png" alt="1lc-apc-A-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/TxcFs3kM/1lc-upc-A-B.png" alt="1lc-upc-A-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/CsW4nRSh/1mtrl-pc-A-B.png" alt="1mtrl-pc-A-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/h1BwLZDL/1mu-pc-A-B.png" alt="1mu-pc-A-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/Z6dxdFH2/1sc-apc-A-B.png" alt="1sc-apc-A-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/8nnbQfcS/1sc-upc-A-B.png" alt="1sc-upc-A-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/zhnswN6P/1st-pc-A-B.png" alt="1st-pc-A-B" border="0"></a>
+
+
+    // BLUE pigtails ---------------******
+
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/ch6pXjzQ/1din-pc-B-A.png" alt="1din-pc-B-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/KxbXPGsV/1fc-pc-B-A.png" alt="1fc-pc-B-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/CKytGkdd/1lc-pc-B-A.png" alt="1lc-pc-B-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/8DZrr7Js/1mtrl-pc-B-A.png" alt="1mtrl-pc-B-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/23T40ND1/1mu-pc-B-A.png" alt="1mu-pc-B-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/GQDGGbjd/1sc-pc-B-A.png" alt="1sc-pc-B-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/PZMVvSH6/1st-pc-B-A.png" alt="1st-pc-B-A" border="0"></a>
+
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/ch6pXjzQ/1din-pc-B-A.png" alt="1din-upc-B-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/KxbXPGsV/1fc-pc-B-A.png" alt="1fc-upc-B-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/CKytGkdd/1lc-pc-B-A.png" alt="1lc-upc-B-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/8DZrr7Js/1mtrl-pc-B-A.png" alt="1mtrl-upc-B-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/23T40ND1/1mu-pc-B-A.png" alt="1mu-upc-B-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/GQDGGbjd/1sc-pc-B-A.png" alt="1sc-upc-B-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/PZMVvSH6/1st-pc-B-A.png" alt="1st-upc-B-A" border="0"></a>
+
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/xSwtNnrV/1din-pc-B-B.png" alt="1din-pc-B-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/YTLBZz3H/1fc-pc-B-B.png" alt="1fc-pc-B-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/p6k82XRP/1lc-pc-B-B.png" alt="1lc-pc-B-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/F4pZJXVy/1mtrl-pc-B-B.png" alt="1mtrl-pc-B-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/QFd2KfMq/1mu-pc-b-B.png" alt="1mu-pc-b-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/chs7LMX1/1sc-pc-B-B.png" alt="1sc-pc-B-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/0ySB45Qp/1st-pc-B-B.png" alt="1st-pc-B-B" border="0"></a>
+
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/xSwtNnrV/1din-pc-B-B.png" alt="1din-upc-B-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/YTLBZz3H/1fc-pc-B-B.png" alt="1fc-upc-B-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/p6k82XRP/1lc-pc-B-B.png" alt="1lc-upc-B-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/F4pZJXVy/1mtrl-pc-B-B.png" alt="1mtrl-upc-B-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/QFd2KfMq/1mu-pc-b-B.png" alt="1mu-upc-b-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/chs7LMX1/1sc-pc-B-B.png" alt="1sc-upc-B-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/0ySB45Qp/1st-pc-B-B.png" alt="1st-upc-B-B" border="0"></a>
+
+
+   // WATER pigtails --------------------*******
+
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/9kxX3mgv/1din-pc-W-A.png" alt="1din-pc-W-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/gLVKCk8z/1fc-pc-W-A.png" alt="1fc-pc-W-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/XZ9hypP9/1lc-pc-W-A.png" alt="1lc-pc-W-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/k6cvhxds/1mtrl-pc-W-A.png" alt="1mtrl-pc-W-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/gbpc26DK/1mu-pc-R-A.png" alt="1mu-pc-R-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/4RsFC42w/1sc-pc-W-A.png" alt="1sc-pc-W-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/jkMXNS81/1st-pc-W-A.png" alt="1st-pc-W-A" border="0"></a>
+
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/9kxX3mgv/1din-pc-W-A.png" alt="1din-upc-W-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/gLVKCk8z/1fc-pc-W-A.png" alt="1fc-upc-W-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/XZ9hypP9/1lc-pc-W-A.png" alt="1lc-upc-W-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/k6cvhxds/1mtrl-pc-W-A.png" alt="1mtrl-upc-W-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/gbpc26DK/1mu-pc-R-A.png" alt="1mu-upc-R-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/4RsFC42w/1sc-pc-W-A.png" alt="1sc-upc-W-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/jkMXNS81/1st-pc-W-A.png" alt="1st-upc-W-A" border="0"></a>
+
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/LdswMYkc/1din-pc-W-B.png" alt="1din-pc-W-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/zL6v8KF/1fc-pc-W-B.png" alt="1fc-pc-W-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/H0yHS2R/1lc-pc-W-B.png" alt="1lc-pc-W-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/pBqg3jJZ/1mtrl-pc-W-B.png" alt="1mtrl-pc-W-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/Y7tyy9cZ/1mu-pc-W-B.png" alt="1mu-pc-W-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/Z1BS4j14/1sc-pc-w-B.png" alt="1sc-pc-w-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/VXY1CrV/1st-pc-W-B.png" alt="1st-pc-W-B" border="0"></a>
+
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/LdswMYkc/1din-pc-W-B.png" alt="1din-upc-W-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/zL6v8KF/1fc-pc-W-B.png" alt="1fc-upc-W-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/H0yHS2R/1lc-pc-W-B.png" alt="1lc-upc-W-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/pBqg3jJZ/1mtrl-pc-W-B.png" alt="1mtrl-upc-W-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/Y7tyy9cZ/1mu-pc-W-B.png" alt="1mu-upc-W-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/Z1BS4j14/1sc-pc-w-B.png" alt="1sc-upc-w-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/VXY1CrV/1st-pc-W-B.png" alt="1st-upc-W-B" border="0"></a>
+
+    // WHITE pigtails ---------------------*******
+
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/sd590qMv/1din-pc-Br-A.png" alt="1din-pc-Br-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/QFcyG7yj/1fc-pc-BR-A.png" alt="1fc-pc-BR-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/DDkqdsg0/1lc-pc-BR-A.png" alt="1lc-pc-BR-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/S4nHTWZ1/1mtrl-pc-BR-A.png" alt="1mtrl-pc-BR-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/RTZhv9VW/1mu-pc-BR-A.png" alt="1mu-pc-BR-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/HWNv3FB/1sc-pc-BR-A.png" alt="1sc-pc-BR-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/s9ssZhvq/1st-pc-BR-A.png" alt="1st-pc-BR-A" border="0"></a>
+
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/sd590qMv/1din-pc-Br-A.png" alt="1din-upc-Br-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/QFcyG7yj/1fc-pc-BR-A.png" alt="1fc-upc-BR-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/DDkqdsg0/1lc-pc-BR-A.png" alt="1lc-upc-BR-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/S4nHTWZ1/1mtrl-pc-BR-A.png" alt="1mtrl-upc-BR-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/RTZhv9VW/1mu-pc-BR-A.png" alt="1mu-upc-BR-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/HWNv3FB/1sc-pc-BR-A.png" alt="1sc-upc-BR-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/s9ssZhvq/1st-pc-BR-A.png" alt="1st-upc-BR-A" border="0"></a>
+
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/6cQSGc6m/1din-pc-BR-B.png" alt="1din-pc-BR-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/8LrD54kK/1fc-pc-BR-B.png" alt="1fc-pc-BR-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/KchMFLHq/1lc-pc-BR-B.png" alt="1lc-pc-BR-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/p65sqMQX/1mtrl-pc-BR-B.png" alt="1mtrl-pc-BR-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/qYRCfF0M/1mu-pc-BR-B.png" alt="1mu-pc-BR-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/kszHTFgX/1sc-pc-BR-B.png" alt="1sc-pc-BR-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/5grj2Zmv/1st-pc-BR-B.png" alt="1st-pc-BR-B" border="0"></a>
+
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/6cQSGc6m/1din-pc-BR-B.png" alt="1din-upc-BR-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/8LrD54kK/1fc-pc-BR-B.png" alt="1fc-upc-BR-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/KchMFLHq/1lc-pc-BR-B.png" alt="1lc-upc-BR-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/p65sqMQX/1mtrl-pc-BR-B.png" alt="1mtrl-upc-BR-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/qYRCfF0M/1mu-pc-BR-B.png" alt="1mu-upc-BR-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/kszHTFgX/1sc-pc-BR-B.png" alt="1sc-upc-BR-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/5grj2Zmv/1st-pc-BR-B.png" alt="1st-upc-BR-B" border="0"></a>
+
+
+    `;
+
+    const JumpersImages = `
+    
     ORANGE ------*****
     <a href="https://ibb.co/ynXGTq2g"><img src="https://i.ibb.co/0jc8Nr5Y/c-L.png" alt="c-L" border="0"></a>
 
@@ -190,6 +441,7 @@ function GetCablesImages() {
     <a href="https://imgbb.com/"><img src="https://i.ibb.co/35r1gP0V/2sc-pc-L-B.png" alt="2sc-upc-L-B" border="0"></a>
     <a href="https://imgbb.com/"><img src="https://i.ibb.co/pBf0HvDw/2st-pc-L-B.png" alt="2st-upc-L-B" border="0"></a>
     <a href="https://imgbb.com/"><img src="https://i.ibb.co/KxWRYgNj/mtrl-pc-L-B.png" alt="mtrl-upc-L-B" border="0"></a>
+
 
 
     GREEN --------*****
@@ -231,6 +483,8 @@ function GetCablesImages() {
     <a href="https://imgbb.com/"><img src="https://i.ibb.co/Gb4KqnN/mpo-pc-V-B.png" alt="mpo-upc-V-B" border="0"></a>
     <a href="https://imgbb.com/"><img src="https://i.ibb.co/LdhLYBzd/mtrl-pc-V-B.png" alt="mtrl-upc-V-B" border="0"></a>
 
+
+ 
 
 
     PURPLE -----------*******
@@ -331,7 +585,6 @@ function GetCablesImages() {
 
 
 
-
     // BLUE ---------------******
     <a href="https://ibb.co/Tq0wvSw9"><img src="https://i.ibb.co/JFpcB4cD/c-azul.png" alt="c-B" border="0"></a>
 
@@ -370,6 +623,8 @@ function GetCablesImages() {
     <a href="https://imgbb.com/"><img src="https://i.ibb.co/k26GtKvV/2st-pc-B-B.png" alt="2st-upc-B-B" border="0"></a>
     <a href="https://imgbb.com/"><img src="https://i.ibb.co/MD8vY41q/mpo-pc-B-B.png" alt="mpo-upc-B-B" border="0"></a>
     <a href="https://imgbb.com/"><img src="https://i.ibb.co/m58ZdMPw/mtrl-pc-B-B.png" alt="mtrl-upc-B-B" border="0"></a>
+
+
 
 
     // WATER --------------------*******
@@ -411,12 +666,33 @@ function GetCablesImages() {
     <a href="https://imgbb.com/"><img src="https://i.ibb.co/N6kSGnPt/mpo-pc-W-B.png" alt="mpo-upc-W-B" border="0"></a>
     <a href="https://imgbb.com/"><img src="https://i.ibb.co/jPMMn42N/mtrl-pc-W-B.png" alt="mtrl-upc-W-B" border="0"></a>
 
-`;
+
+    // WHITE ---------------------*******
+    <a href="https://ibb.co/0j5CZt7w"><img src="https://i.ibb.co/zhdXbJMk/branco.png" alt="c-br" border="0"></a>
+
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/hFx9K8tk/2din-pc-BR-A.png" alt="2din-pc-BR-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/jv4RhrK4/2fc-pc-BR-A.png" alt="2fc-pc-BR-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/GQR8PTFV/2lc-pc-BR-A.png" alt="2lc-pc-BR-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/VWK1wgDg/2mu-pc-BR-A.png" alt="2mu-pc-BR-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/Mk6X938Y/2sc-pc-BR-A.png" alt="2sc-pc-BR-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/JRLTyhDY/2st-pc-BR-A.png" alt="2st-pc-BR-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/6R7qbhYp/mpo-pc-BR-A.png" alt="mpo-pc-BR-A" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/v6BRFXhM/mtrl-pc-BR-A.png" alt="mtrl-pc-BR-A" border="0"></a>
+
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/wNtzBMJN/2din-pc-BR-B.png" alt="2din-pc-BR-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/4ZjtzHVP/2fc-pc-BR-B.png" alt="2fc-pc-BR-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/4RRTvPb9/2lc-pc-BR-B.png" alt="2lc-pc-BR-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/PvLMKt1Q/2mu-pc-BR-B.png" alt="2mu-pc-BR-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/DHWXvg2w/2sc-pc-BR-B.png" alt="2sc-pc-BR-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/27WGW0wD/2st-pc-BR-B.png" alt="2st-pc-BR-B" border="0"></a>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/vf06fMD/mpo-pc-BR-B.png" alt="mpo-pc-BR-B" border="0"></a> 
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/1fSr5LS1/mtrl-pc-BR-B.png" alt="mtrl-pc-BR-B" border="0"></a>
+    `; 
+
+    Imagesdiv.innerHTML =  tp === 1 ? JumpersImages : PigtailsImages;
 
     const configImages = [];
-    let Images = Imagesdiv.querySelectorAll("img");
-
-
+    let Images = Imagesdiv.querySelectorAll("img"); 
     const getColor = (color) => {
         let result = null;
         const colors = [
@@ -425,6 +701,7 @@ function GetCablesImages() {
             { color: "purple", key: "R" },
             { color: "yellow", key: "A" },
             { color: "blue", key: "B" },
+            { color: "white", key: "BR" },
             { color: "water", key: "W" },
         ];
         colors.forEach(el => {
@@ -487,8 +764,7 @@ function GetCablesImages() {
 }
 
 
-const Images = GetCablesImages();
-
+let Images = GetCablesImages(currentConfigValue);
 
 // 0 - configurar o alerta
 $(document).ready(function () {
@@ -511,8 +787,7 @@ $(document).ready(function () {
 });
 
 // 1 -  Pegar os inputs do configurador outros dados; 
-
-let currentConfigValue = 1;
+ 
 let colorDiv = document.querySelector(".colorselect");
 
 const configValue = {
@@ -965,7 +1240,7 @@ const AreaToExport = document.getElementById("main-image-box");
 const ImgPlaceholder = "";
 const Image_a_element = document.getElementById("left-image-cv");
 const Image_b_element = document.getElementById("right-image-cv");
-const CablesImages = GetCablesImages();
+let CablesImages = GetCablesImages(currentConfigValue);
 const QuantityInput = document.getElementById("config-request-amount-input");
 
 let MeterValue = 0;
@@ -1223,11 +1498,13 @@ function ChangeTypeOfConfiguration() {
     document.getElementById("config-mode-selector").addEventListener("change", (e) => {
         removeAllConfigurations();
         currentConfigValue = e.target.value * 1;
-        document.querySelectorAll("#config-form .hide").forEach(rm => { rm.classList.remove("hide"); });
-        if (currentConfigValue === 3) BuildForm(3);
-        else if (currentConfigValue === 2) BuildForm(2);
+        document.querySelectorAll("#config-form .hide").forEach(rm =>{rm.classList.remove("hide");});
+        if(currentConfigValue === 3) BuildForm(3);
+        else if(currentConfigValue === 2) BuildForm(2);
         else BuildForm(1);
         showDescrriptionWhileConfigurating();
+        Images = GetCablesImages(currentConfigValue);
+        CablesImages = GetCablesImages(currentConfigValue);
     });
 }
 
@@ -1863,6 +2140,7 @@ const CablesPrices = [
 ];
 
 
+ 
 
 function CalculateTotal(metters, amount, configuratorFormData) {
     const TotalConfigurationTag = document.getElementById("total-configuration");
@@ -1890,7 +2168,6 @@ function CalculateTotal(metters, amount, configuratorFormData) {
     const side_a_connector = getValueById("side_a_connector");
     const side_a_termination = getValueById("side_a_termination");
 
-    // Só busca sideB se não for multifiber (valor 2)
     const side_b_connector = currentConfigValue !== 2 ? getValueById("side_b_connector") : null;
     const side_b_termination = currentConfigValue !== 2 ? getValueById("side_b_termination") : null;
 
@@ -1906,28 +2183,18 @@ function CalculateTotal(metters, amount, configuratorFormData) {
     };
 
     const normalize = str => str?.toUpperCase().replace(/\s+/g, '').trim();
-        console.clear();
 
     const DataPricesFiltered = DataPrices.find(d => d.type === type);
+
     const getConnectorPrice = (mode, termination, connector) => {
         const infoMatch = DataPricesFiltered?.info.find(item =>
             normalize(item.mode) === normalize(mode) &&
             normalize(item.termination) === normalize(termination)
         );
-
-
-
-        DataPricesFiltered?.info.find(item =>{
-            console.log("MODE DB = "+normalize(item.mode) + " | passed = "+normalize(mode),   normalize(item.mode) === normalize(mode)); 
-            console.log("TERMINATION DB = "+normalize(item.termination) + " | passed = "+normalize(termination),   normalize(item.termination) === normalize(termination)); 
-        });
-
-
         if (!infoMatch) return null;
         const connectorMatch = infoMatch.connects.find(c =>
             normalize(c.connect) === normalize(connector)
-        ); 
-
+        );
         return connectorMatch ? { connect: connector, price: connectorMatch.price } : null;
     };
 
@@ -1937,6 +2204,7 @@ function CalculateTotal(metters, amount, configuratorFormData) {
         : null;
 
     const fiberCount = fiber_number_selector?.includes("2") ? 2 : 1;
+
     const cableGroup = CablesPrices.find(group =>
         normalize(group.mode) === normalize(fiber_mode_selector)
     );
@@ -1958,48 +2226,48 @@ function CalculateTotal(metters, amount, configuratorFormData) {
     };
 
     let total = null;
-    if (sideA && (currentConfigValue === 2 || sideB)) {
-        const sideTotal = sideA.price + (sideB?.price || 0);
-        total = calculateFormula(currentConfigValue, sideTotal, metters, amount); 
 
+    if (
+        (currentConfigValue === 1 && sideA && sideB && cable) || // Jumpers
+        (currentConfigValue === 3 && sideA && cable)              // Pigtails
+    ) {
+        total = calculateFormula(
+            currentConfigValue,
+            sideA.price,
+            sideB?.price || 0,
+            cable?.price || 0,
+            fiberCount,
+            metters,
+            amount
+        );
         TotalConfigurationTag.innerText = total;
         if (document.getElementById("totol")) {
             document.getElementById("totol").innerHTML = `Total (+IVA) : <span class="text-success">${total}</span>`;
         }
     }
 
-
-   
-       cableGroup.prices.map(item => { 
-        console.log("TYPE = "+normalize(item.type) +" |  Passed = "+normalize(fiber_type_selector),  normalize(item.type) === normalize(fiber_type_selector));
-        console.log("DIAMETRO = "+normalize(item.diameter) +" |  Passed = "+normalize(fiber_diameter_selector), normalize(item.diameter) === normalize(fiber_diameter_selector));
-        console.log("numero de fibras = "+ item.fiber +" |  Passed = "+ fiberCount, item.fiber === fiberCount);
-        console.log(" ")
-        console.log(" ")
-      });
-
-
-       
-      console.log("Dados da configuração = ", fiberData); 
-      console.log("CABO = ", cable);
-      console.log("output = ", result);
-
-
- 
-
+    console.log("Dados da configuração = ", fiberData); 
+    console.log("CABO = ", cable);
+    console.log("output = ", result);
 
     return { ...result, total };
 }
 
+function calculateFormula(configValue, sideAPrice, sideBPrice, cablePrice, fiberCount, metters, amount) {
+    let total = 0;
 
+    if (configValue === 1) { // Jumpers
+        total = (fiberCount * sideAPrice * cablePrice * metters + (fiberCount * sideBPrice)) * amount;
+    } else if (configValue === 3) { // Pigtails
+        total = (1 * sideAPrice + cablePrice * metters) * amount;
+    } else {
+        total = 0;
+    }
 
-function calculateFormula(number, connectorAvgPrice, metters, amount) {
-    const Iva = 0;
-    const Total = number * connectorAvgPrice * metters;
-    const IvaValue = Iva * Total / 100;
-    return new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR" }).format((Total + IvaValue) * amount);
+    return new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR" }).format(total);
 }
- 
+
+
 
 
 
