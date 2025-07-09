@@ -2257,7 +2257,7 @@ function calculateFormula(configValue, sideAPrice, sideBPrice, cablePrice, fiber
     let total = 0;
 
     if (configValue === 1) { // Jumpers
-        total = (fiberCount * sideAPrice * cablePrice * metters + (fiberCount * sideBPrice)) * amount;
+        total = (fiberCount*2 * sideAPrice * cablePrice * metters + (fiberCount * sideBPrice)) * amount;
     } else if (configValue === 3) { // Pigtails
         total = (1 * sideAPrice + cablePrice * metters) * amount;
     } else {
