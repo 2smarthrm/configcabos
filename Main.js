@@ -2243,7 +2243,7 @@ function CalculateTotal(metters, amount, configuratorFormData) {
 
  
 
-        TotalConfigurationTag.innerText = new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR" }).format(total);
+        TotalConfigurationTag.innerText = new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR" }).format(total) +  " +IVA";
         document.querySelector(".totalwithivavalue").innerText = `( `+ new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR" }).format(total + (total * 23 / 100)) +" "+ ` c/Iva )`
         if (document.getElementById("totol")) {
             document.getElementById("totol").innerHTML = `Total (+IVA) : <span class="text-success">
