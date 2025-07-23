@@ -2253,6 +2253,26 @@ function CalculateTotal(metters, amount, configuratorFormData) {
     return { ...result, total };
 }
 
+
+ function calculateFormula(configValue, sideAPrice, sideBPrice, cablePrice, fiberCount, metters, amount) {
+    let total = 0;
+
+    if (configValue === 1) { // Jumpers (Simplex ou Duplex)
+        // Ex: Simplex = 1x Lado A + 1x Fibra (por metro) + 1x Lado B
+        //     Duplex  = 2x Lado A + 1x Fibra (por metro, duplex) + 2x Lado B
+        total = ((fiberCount * sideAPrice)  + (cablePrice * metters) + (fiberCount * sideBPrice)) * amount;
+    } else if (configValue === 3) { // Pigtails
+        // Apenas 1x conector lado A e fibra por metro
+        total = (sideAPrice + cablePrice * metters) * amount;
+    } else {
+        total = 0;
+    }
+
+    alert(total);
+    return new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR" }).format(total);
+}
+
+
 function calculateFormula(configValue, sideAPrice, sideBPrice, cablePrice, fiberCount, metters, amount) {
     let total = 0;
 
@@ -2264,7 +2284,11 @@ function calculateFormula(configValue, sideAPrice, sideBPrice, cablePrice, fiber
         total = 0;
     }
 
-    return new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR" }).format(total);
+    let IvaValue = new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR" }).format(total * 23 / 100);
+    let tot = new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR" }).format(total);
+    let totpLusiva = new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR" }).format(total + (total * 23 / 100));
+
+    return   `${tot}  +IVA(${IvaValue})  => ${totpLusiva}`;
 }
 
 
