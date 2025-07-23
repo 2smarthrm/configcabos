@@ -2267,30 +2267,11 @@ function CalculateTotal(metters, amount, configuratorFormData) {
     } else {
         total = 0;
     }
-
-    alert(total);
+ 
     return new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR" }).format(total);
 }
 
-
-function calculateFormula(configValue, sideAPrice, sideBPrice, cablePrice, fiberCount, metters, amount) {
-    let total = 0;
-
-    if (configValue === 1) { // Jumpers
-        total = (fiberCount*2 * sideAPrice * cablePrice * metters + (fiberCount * sideBPrice)) * amount;
-    } else if (configValue === 3) { // Pigtails
-        total = (1 * sideAPrice + cablePrice * metters) * amount;
-    } else {
-        total = 0;
-    }
-
-    let IvaValue = new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR" }).format(total * 23 / 100);
-    let tot = new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR" }).format(total);
-    let totpLusiva = new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR" }).format(total + (total * 23 / 100));
-
-    return   `${tot}  +IVA(${IvaValue})  => ${totpLusiva}`;
-}
-
+ 
 
 
 
