@@ -2267,9 +2267,14 @@ function CalculateTotal(metters, amount, configuratorFormData) {
     } else {
         total = 0;
     }
- 
-    return new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR" }).format(total);
+
+    let IvaValue = new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR" }).format(total * 23 / 100);
+    let tot = new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR" }).format(total);
+    let totpLusiva = new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR" }).format(total + (total * 23 / 100));
+
+    return   `${tot}  +IVA(${IvaValue})  => ${totpLusiva}`;
 }
+
 
  
 
