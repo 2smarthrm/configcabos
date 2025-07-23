@@ -2240,15 +2240,22 @@ function CalculateTotal(metters, amount, configuratorFormData) {
             metters,
             amount
         );
-        TotalConfigurationTag.innerText = total;
+
+ 
+
+        TotalConfigurationTag.innerText = new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR" }).format(total);
+        document.querySelector(".totalwithivavalue").innerText = `( `+ new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR" }).format(total + (total * 23 / 100)) +" "+ ` c/Iva )`
         if (document.getElementById("totol")) {
-            document.getElementById("totol").innerHTML = `Total (+IVA) : <span class="text-success">${total}</span>`;
+            document.getElementById("totol").innerHTML = `Total (+IVA) : <span class="text-success">
+                 ${new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR" }).format(total + (total * 23 / 100))}
+            </span>`;
         }
     }
 
     console.log("Dados da configuração = ", fiberData); 
     console.log("CABO = ", cable);
     console.log("output = ", result);
+
 
     return { ...result, total };
 }
@@ -2272,7 +2279,7 @@ function CalculateTotal(metters, amount, configuratorFormData) {
     let tot = new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR" }).format(total);
     let totpLusiva = new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR" }).format(total + (total * 23 / 100));
 
-    return   `${tot}  +IVA(${IvaValue})  => ${totpLusiva}`;
+    return total;
 }
 
 
